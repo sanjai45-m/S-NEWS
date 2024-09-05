@@ -1,0 +1,80 @@
+name: flutter_application_1
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http:
+  skeletonizer:
+  shared_preferences:
+  provider:
+  flutter_slide_drawer:
+  firebase_core:
+  firebase_auth:
+  firebase_database:
+  intl_phone_field:
+  page_transition:
+  awesome_dialog:
+  image_picker:
+  firebase_storage:
+  action_slider:
+  cool_alert:
+  image_cropper:
+  google_fonts:
+  card_swiper:
+  fancy_shimmer_image:
+  loading_animation_widget:
+  intl:
+  flutter_slider_drawer:
+  url_launcher:
+  webview_flutter: ^4.8.0
+  share_plus:
+  floating_bottom_navigation_bar:
+  animated_icon:
+  speech_to_text:
+  floating_draggable_widget:
+  flutter_iconly:
+  toastification:
+  firebase_messaging:
+  googleapis_auth:
+  animated_floating_buttons:
+  flutter_launcher_icons:
+  toast:
+  flutter_overboard:
+  dismissible_page:
+  lottie:
+  rive:
+  tutorial_coach_mark:
+  carousel_slider:
+dev_dependencies:
+
+  flutter_test:
+    sdk: flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/splash_screen/news_logo.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash_screen/news_logo.png
+  android: true
+  ios: true
+  web: false
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/riv/
+    - assets/keys/authen-48d46-firebase-adminsdk-afo8n-a49b4f2cae.json
+    - assets/splash_screen/
+    - assets/lottie/
