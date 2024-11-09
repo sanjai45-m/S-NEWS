@@ -75,6 +75,6 @@ flutter:
   assets:
     - assets/images/
     - assets/images/riv/
-    - assets/keys/snews-8ed67-firebase-adminsdk-fb9er-c8eda72344.json
+   
     - assets/splash_screen/
     - assets/lottie/

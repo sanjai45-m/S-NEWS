@@ -52,11 +52,7 @@ void main() async {
 
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: 'AIzaSyAEtOExKy6kpd2xUg72x6Zrl_4cpm4AV_0',
-      appId: '1:419020799007:android:662b35213405fc7191292a',
-      messagingSenderId: '419020799007',
-      projectId: 'snews-8ed67',
-      storageBucket: "gs://snews-8ed67.appspot.com",
+      
     ),
   );
 
