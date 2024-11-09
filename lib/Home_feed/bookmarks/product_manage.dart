@@ -32,12 +32,11 @@ class ProductsManage with ChangeNotifier {
   int _bookmarkCount = 0;
 
   List<AddBookMark> get bookmarksList => _bookmarksList;
-
   int get bookmarkCount => _bookmarkCount;
 
   Future<void> fetchBookmarks(String phone) async {
     final response = await http.get(
-      Uri.parse('Url'),
+      Uri.parse('baseurl/users/$phone/bookmarks.json'),
     );
 
     if (response.statusCode == 200) {
@@ -62,7 +61,7 @@ class ProductsManage with ChangeNotifier {
 
   Future<void> addBookmark(String phone, AddBookMark bookmark) async {
     final response = await http.post(
-      Uri.parse('Url'),
+      Uri.parse('baseurl/users/$phone/bookmarks.json'),
       body: jsonEncode(bookmark.toJson()),
     );
     if (response.statusCode == 200) {
@@ -80,7 +79,7 @@ class ProductsManage with ChangeNotifier {
     final bookmarks =
         _bookmarksList.where((b) => b.url != bookmark.url).toList();
     final response = await http.put(
-      Uri.parse('Url'),
+      Uri.parse('baseurl/users/$phone/bookmarks.json'),
       body: jsonEncode(bookmarks.map((b) => b.toJson()).toList()),
     );
     if (response.statusCode == 200) {
@@ -94,7 +93,7 @@ class ProductsManage with ChangeNotifier {
 
   Future<void> loadBookmarkCount(String phone) async {
     final response = await http.get(
-      Uri.parse('Url'),
+      Uri.parse('baseurl/users/$phone/bookmarkCount.json'),
     );
 
     if (response.statusCode == 200) {
@@ -107,7 +106,7 @@ class ProductsManage with ChangeNotifier {
 
   Future<void> saveBookmarkCountToFirebase(String phone, int count) async {
     await http.put(
-      Uri.parse('Url'),
+      Uri.parse('baseurl/users/$phone/bookmarkCount.json'),
       body: jsonEncode(count),
     );
   }
@@ -124,5 +123,5 @@ class ProductsManage with ChangeNotifier {
     notifyListeners();
   }
 
-//showlogin users
+  //showlogin users
 }

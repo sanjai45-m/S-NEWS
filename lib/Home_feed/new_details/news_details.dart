@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Home_feed/bookmarks/product_manage.dart';
-import 'package:flutter_application_1/Home_feed/const_home_feed/skeleton_details_page.dart';
+import 'package:SNEWS/Home_feed/bookmarks/product_manage.dart';
+import 'package:SNEWS/Home_feed/const_home_feed/skeleton_details_page.dart';
 import 'package:toast/toast.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../../provider/user_provider.dart';
-import '../../webview_tab/news_details_webview.dart';
+import '../../tabs/news_details_webview.dart';
 
 class NewsDetails extends StatefulWidget {
   final NewsDetailsSkeleton newsDetailsSkeleton;
@@ -34,7 +34,7 @@ class _NewsDetailsState extends State<NewsDetails> {
     final productsManage = Provider.of<ProductsManage>(context, listen: false);
     setState(() {
       isBookMarked = productsManage.bookmarksList.any((bookmark) =>
-      bookmark.url == widget.newsDetailsSkeleton.url &&
+          bookmark.url == widget.newsDetailsSkeleton.url &&
           bookmark.title == widget.newsDetailsSkeleton.title);
     });
   }
@@ -68,7 +68,9 @@ class _NewsDetailsState extends State<NewsDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.newsDetailsSkeleton.name),
-        backgroundColor: themeProvider ? Colors.black :Theme.of(context).colorScheme.primary,
+        backgroundColor: themeProvider
+            ? Colors.black
+            : Theme.of(context).colorScheme.primary,
         foregroundColor: themeProvider ? Colors.white : Colors.white,
         elevation: 1, // Subtle shadow for a cleaner look
         actions: [
@@ -86,72 +88,77 @@ class _NewsDetailsState extends State<NewsDetails> {
           children: [
             (widget.newsDetailsSkeleton.url.isNotEmpty)
                 ? Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Hero(
-                  tag: widget.heroTag,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      widget.newsDetailsSkeleton.url,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      errorBuilder: (context, error, stackTrace) {
-                        return ClipRRect(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Hero(
+                        tag: widget.heroTag,
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.network(
-                            "Url",
+                            widget.newsDetailsSkeleton.url,
                             fit: BoxFit.cover,
                             width: double.infinity,
+                            errorBuilder: (context, error, stackTrace) {
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  "https://img.freepik.com/free-photo/image-icon-front-side-white-background_187299-40166.jpg",
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 20,
-                  right: 20,
-                  child: Material(
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.purple,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isBookMarked = !isBookMarked;
-                          //we saved in a variable
-                          final bookmark = AddBookMark(
-                              title: widget.newsDetailsSkeleton.title,
-                              url: widget.newsDetailsSkeleton.url);
-                          if (isBookMarked) {
-                            productsManage.addBookmark(phone, bookmark);
-                            Toast.show("Bookmark Added", duration: Toast.lengthShort, gravity: Toast.bottom);
-                          } else {
-                            productsManage.removeBookmark(phone, bookmark);
-                            Toast.show("Bookmark Removed", duration: Toast.lengthShort, gravity: Toast.bottom);
-                          }
-                        });
-                      },
-                      icon: Icon(
-                        isBookMarked
-                            ? Icons.bookmark
-                            : Icons.bookmark_add_outlined,
-                        color: Colors.white,
+                        ),
                       ),
+                      Positioned(
+                        bottom: 20,
+                        right: 20,
+                        child: Material(
+                          elevation: 2,
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.purple,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isBookMarked = !isBookMarked;
+                                //we saved in a variable
+                                final bookmark = AddBookMark(
+                                    title: widget.newsDetailsSkeleton.title,
+                                    url: widget.newsDetailsSkeleton.url);
+                                if (isBookMarked) {
+                                  productsManage.addBookmark(phone, bookmark);
+                                  Toast.show("Bookmark Added",
+                                      duration: Toast.lengthShort,
+                                      gravity: Toast.bottom);
+                                } else {
+                                  productsManage.removeBookmark(
+                                      phone, bookmark);
+                                  Toast.show("Bookmark Removed",
+                                      duration: Toast.lengthShort,
+                                      gravity: Toast.bottom);
+                                }
+                              });
+                            },
+                            icon: Icon(
+                              isBookMarked
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_add_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      "https://img.freepik.com/free-photo/image-icon-front-side-white-background_187299-40166.jpg",
+                      fit: BoxFit.cover,
+                      width: double.infinity,
                     ),
                   ),
-                ),
-              ],
-            )
-                : ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                "Url",
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
-            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -197,7 +204,8 @@ class _NewsDetailsState extends State<NewsDetails> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 12.0, horizontal: 20.0),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.blue, Colors.purple],

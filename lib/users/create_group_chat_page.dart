@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -16,7 +16,8 @@ class CreateChatGroupPage extends StatefulWidget {
 
 class _CreateChatGroupPageState extends State<CreateChatGroupPage> {
   final TextEditingController _groupNameController = TextEditingController();
-  final DatabaseReference _chatGroupsRef = FirebaseDatabase.instance.ref().child('chat_groups');
+  final DatabaseReference _chatGroupsRef =
+      FirebaseDatabase.instance.ref().child('chat_groups');
   String? _imageUrl;
 
   Future<void> _pickAndUploadImage() async {
@@ -32,7 +33,9 @@ class _CreateChatGroupPageState extends State<CreateChatGroupPage> {
   }
 
   Future<String> _uploadImageToFirebase(String imagePath) async {
-    final ref = FirebaseStorage.instance.ref().child('group_images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('group_images/${DateTime.now().millisecondsSinceEpoch}.jpg');
     await ref.putFile(File(imagePath));
     return await ref.getDownloadURL();
   }
@@ -67,21 +70,23 @@ class _CreateChatGroupPageState extends State<CreateChatGroupPage> {
               controller: _groupNameController,
               decoration: InputDecoration(
                 labelText: 'Group Name...',
-                labelStyle: TextStyle(color:themeProvider ? Color(0xFF808080) : Colors.grey ),
+                labelStyle: TextStyle(
+                    color: themeProvider ? Color(0xFF808080) : Colors.grey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
                 fillColor: Colors.grey[200],
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _pickAndUploadImage,
               style: ElevatedButton.styleFrom(
-                backgroundColor:Theme.of(context).colorScheme.primary,
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -92,15 +97,16 @@ class _CreateChatGroupPageState extends State<CreateChatGroupPage> {
             const SizedBox(height: 16),
             _imageUrl != null
                 ? ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                _imageUrl!,
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            )
-                : const Text('No image selected', style: TextStyle(color: Colors.grey)),
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      _imageUrl!,
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : const Text('No image selected',
+                    style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _createChatGroup,

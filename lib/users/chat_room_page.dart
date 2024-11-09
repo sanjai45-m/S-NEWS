@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -34,7 +34,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
       FirebaseDatabase.instance.ref().child('chat');
   final DatabaseReference _usersRef =
       FirebaseDatabase.instance.ref().child('users');
-    late StreamSubscription<DatabaseEvent> _chatSubscription;
+  late StreamSubscription<DatabaseEvent> _chatSubscription;
   List<Map<String, dynamic>> _messages = [];
   ScrollController? _scrollController;
   final ImagePicker _picker = ImagePicker();
@@ -76,7 +76,8 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
         });
 
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          _scrollController!.jumpTo(_scrollController!.position.maxScrollExtent);
+          _scrollController!
+              .jumpTo(_scrollController!.position.maxScrollExtent);
         });
       }
     });
@@ -158,8 +159,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   Future<void> _notifyAllUsers(String message,
       {Function(String)? onSuccess, Function(String)? onError}) async {
-    final url =
-        'notification url';
+    final url = 'baseurl';
 
     try {
       final response = await http.post(
@@ -320,7 +320,6 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     final themeProvider = Provider.of<DarkThemeProvider>(context).darkTheme;
     return Scaffold(
       appBar: AppBar(
-
         title: Row(
           children: [
             ClipOval(
@@ -370,7 +369,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 4.0, horizontal: 8.0),
                   child: GestureDetector(
-                    onLongPress:()=>_showMessageOptions(message) ,
+                    onLongPress: () => _showMessageOptions(message),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: isCurrentUser
@@ -380,10 +379,11 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                         if (!isCurrentUser)
                           CircleAvatar(
                             radius: 18,
-                            backgroundImage: message['profileImageUrl'] != null &&
-                                    message['profileImageUrl'].isNotEmpty
-                                ? NetworkImage(message['profileImageUrl'])
-                                : null,
+                            backgroundImage:
+                                message['profileImageUrl'] != null &&
+                                        message['profileImageUrl'].isNotEmpty
+                                    ? NetworkImage(message['profileImageUrl'])
+                                    : null,
                             child: message['profileImageUrl'] == null ||
                                     message['profileImageUrl'].isEmpty
                                 ? const Icon(Icons.person, size: 20)
@@ -488,10 +488,11 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                         if (isCurrentUser)
                           CircleAvatar(
                             radius: 18,
-                            backgroundImage: message['profileImageUrl'] != null &&
-                                    message['profileImageUrl'].isNotEmpty
-                                ? NetworkImage(message['profileImageUrl'])
-                                : null,
+                            backgroundImage:
+                                message['profileImageUrl'] != null &&
+                                        message['profileImageUrl'].isNotEmpty
+                                    ? NetworkImage(message['profileImageUrl'])
+                                    : null,
                             child: message['profileImageUrl'] == null ||
                                     message['profileImageUrl'].isEmpty
                                 ? const Icon(Icons.person, size: 20)

@@ -2,12 +2,12 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/top_trending/top_trending_news.dart';
+import 'package:SNEWS/top_trending/top_trending_news.dart';
+import 'package:SNEWS/top_trending/top_trending_news_api.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../APIs/top_trending_news_api.dart';
 import '../constant_classes/utils.dart';
 
 class TopTrendingWidget extends StatefulWidget {
@@ -23,7 +23,8 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
 
   Future<List<Articles1>> getDataFromApi() async {
     try {
-      List<Articles1> topTrending = await TopTrendingNewsApiIndia().getFromJsonIndiaData() ?? [];
+      List<Articles1> topTrending =
+          await TopTrendingNewsApiIndia().getFromJsonIndiaData() ?? [];
       return topTrending;
     } catch (e) {
       if (kDebugMode) {
@@ -50,7 +51,8 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: LoadingAnimationWidget.discreteCircle(
-              secondRingColor: isDarkMode ? Colors.grey[800]! : Colors.grey[200]!,
+              secondRingColor:
+                  isDarkMode ? Colors.grey[800]! : Colors.grey[200]!,
               thirdRingColor: Colors.blueAccent,
               size: 50,
               color: Colors.blue,
@@ -76,10 +78,12 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
                 final newsData = articles[index];
                 String? originalDateString = newsData.publishedAt;
                 DateTime dateTime = DateTime.parse(originalDateString!);
-                String formattedDate = DateFormat.yMd().add_jms().format(dateTime);
+                String formattedDate =
+                    DateFormat.yMd().add_jms().format(dateTime);
 
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 16.0),
                   child: Material(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -94,11 +98,14 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                            borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(16)),
                             child: FancyShimmerImage(
                               boxFit: BoxFit.cover,
-                              errorWidget: Image.asset('assets/images/empty_image.png'),
-                               imageUrl: newsData.urlToImage ?? 'URL',
+                              errorWidget:
+                                  Image.asset('assets/images/empty_image.png'),
+                              imageUrl: newsData.urlToImage ??
+                                  'https://cdn.pixabay.com/photo/2017/07/15/19/42/train-track-2507499_1280.jpg',
                               width: size.width,
                               height: 200,
                             ),
@@ -114,7 +121,9 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
                                     style: GoogleFonts.italiana(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: isDarkMode ? Colors.white : Colors.black,
+                                      color: isDarkMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                   ),
                                   const SizedBox(height: 8),
@@ -122,7 +131,9 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
                                     newsData.description ?? 'Description',
                                     style: GoogleFonts.italiana(
                                       fontSize: 16,
-                                      color: isDarkMode ? Colors.white70 : Colors.black54,
+                                      color: isDarkMode
+                                          ? Colors.white70
+                                          : Colors.black54,
                                     ),
                                   ),
                                 ],
@@ -137,7 +148,9 @@ class _TopTrendingWidgetState extends State<TopTrendingWidget> {
                                 formattedDate,
                                 style: GoogleFonts.italiana(
                                   fontSize: 14,
-                                  color: isDarkMode ? Colors.white60 : Colors.black38,
+                                  color: isDarkMode
+                                      ? Colors.white60
+                                      : Colors.black38,
                                 ),
                               ),
                             ),

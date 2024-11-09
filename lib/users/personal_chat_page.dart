@@ -89,7 +89,7 @@ class _PersonalChatPageState extends State<PersonalChatPage> {
               stream: _personalChatsRef.orderByChild('timestamp').onValue,
               builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
                 if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
-                  return Center(child: Lottie.network('Url'));
+                  return Center(child: Lottie.network('https://lottie.host/259b339d-db5f-4e71-bbba-0de84f50e668/JjGTzys3zH.json'));
                 }
 
                 final Map<dynamic, dynamic> messages = snapshot.data!.snapshot.value as Map<dynamic, dynamic>;

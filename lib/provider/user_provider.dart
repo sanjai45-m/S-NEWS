@@ -12,7 +12,6 @@ class UserProvider with ChangeNotifier {
   bool isTyping = false;
   String? _fcmToken; // Add this line
 
-
   String get phoneNumber => _phoneNumber;
   String get firstName => _firstName;
   String get email => _email;
@@ -38,7 +37,7 @@ class UserProvider with ChangeNotifier {
   Future<void> fetchUserData() async {
     await loadPhoneNumberFromPrefs();
     if (_phoneNumber.isNotEmpty) {
-      final String userUrl = 'Database Url';
+      final String userUrl = 'baseurl/users/$_phoneNumber.json';
       try {
         final response = await http.get(Uri.parse(userUrl));
         final data = json.decode(response.body);
@@ -54,8 +53,9 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  Future<void> updateUserData(String newFirstName, String newEmail, String newPin) async {
-    final String userUrl = 'url';
+  Future<void> updateUserData(
+      String newFirstName, String newEmail, String newPin) async {
+    final String userUrl = 'baseurl/users/$_phoneNumber.json';
     final updatedData = {
       'firstName': newFirstName,
       'email': newEmail,
@@ -82,7 +82,7 @@ class UserProvider with ChangeNotifier {
       return false; // Current PIN doesn't match
     }
 
-    final String userUrl = 'Url';
+    final String userUrl = 'baseurl/users/$_phoneNumber.json';
     final updatedData = {
       'firstName': _firstName,
       'email': _email,
@@ -110,7 +110,7 @@ class UserProvider with ChangeNotifier {
 
   Future<void> updateProfileImage(String newProfileImageUrl) async {
     final phone = _phoneNumber;
-    final url = 'Url';
+    final url = 'baseurl/users/$phone.json';
 
     final response = await http.patch(
       Uri.parse(url),
@@ -126,15 +126,14 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-
   void setTypingStatus(bool typing) {
     isTyping = typing;
     notifyListeners();
   }
 
-  void setFcmToken(String token) { // Add this method
+  void setFcmToken(String token) {
+    // Add this method
     _fcmToken = token;
     notifyListeners();
   }
-
 }

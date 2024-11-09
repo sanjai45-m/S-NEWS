@@ -1,17 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
-import 'package:flutter_application_1/searchpage/searchWidget.dart';
-import 'package:flutter_application_1/top_trending/top_trending_news.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
+import 'package:SNEWS/searchpage/searchWidget.dart';
+import 'package:SNEWS/top_trending/top_trending_news.dart';
 import 'package:flutter_slide_drawer/flutter_slide_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'apisearch.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-
-import '../APIs/apisearch.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -133,8 +132,6 @@ class _HomeState extends State<Home> {
       prefs.setStringList('recentSearches', recentSearches);
     });
   }
-
-
 
   void launchUrl(String url) async {
     if (await canLaunch(url)) {
@@ -317,7 +314,9 @@ class _HomeState extends State<Home> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Your search results for ',
-                      style:  TextStyle(color:themeProvider ?Colors.white :  Colors.black, fontSize: 16),
+                      style: TextStyle(
+                          color: themeProvider ? Colors.white : Colors.black,
+                          fontSize: 16),
                       children: <TextSpan>[
                         TextSpan(
                             text: '"$query"',
@@ -344,12 +343,11 @@ class _HomeState extends State<Home> {
                       return GestureDetector(
                         onTap: () {
                           SearchWidget.showBottomSheet(
-                            context,
-                            article.urlToImage ?? '',
-                            article.title ?? "No Title",
-                            article.description ?? "No Description",
-                            article.url ?? ''
-                          );
+                              context,
+                              article.urlToImage ?? '',
+                              article.title ?? "No Title",
+                              article.description ?? "No Description",
+                              article.url ?? '');
                         },
                         child: Card(
                           child: Container(

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/custom_widget/get_started_page.dart';
+import 'package:SNEWS/custom_widget/get_started_page.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class OnBoardingOverlay extends StatefulWidget {
   const OnBoardingOverlay({super.key});
@@ -31,7 +30,8 @@ class _OnBoardingOverlayState extends State<OnBoardingOverlay> {
         },
         finishCallback: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setBool('isFirstLaunch', false); // Set onboarding as complete
+          await prefs.setBool(
+              'isFirstLaunch', false); // Set onboarding as complete
 
           Navigator.pushReplacement(
             context,
@@ -40,7 +40,6 @@ class _OnBoardingOverlayState extends State<OnBoardingOverlay> {
             ),
           );
         },
-
       ),
     );
   }
@@ -58,7 +57,7 @@ final pages = [
       imageAssetPath: 'assets/images/ree.png',
       title: 'Regional News',
       body:
-      'Read news in your preferred language and stay connected with local events.',
+          'Read news in your preferred language and stay connected with local events.',
       doAnimateImage: true),
   PageModel(
       color: const Color(0xFFFF898B),
@@ -66,5 +65,4 @@ final pages = [
       title: 'Community Chat',
       body: 'Join the conversation and discuss the latest news with others.',
       doAnimateImage: true),
-
 ];

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'set_pin_page.dart';
 
@@ -217,7 +217,7 @@ class _OtpPageState extends State<OtpPage> {
                                     const SizedBox(height: 20),
                                     if (_errorMessage.isNotEmpty)
                                       Text(
-                                        "404 Not Found",
+                                        _errorMessage,
                                         style:
                                             const TextStyle(color: Colors.red),
                                       ),

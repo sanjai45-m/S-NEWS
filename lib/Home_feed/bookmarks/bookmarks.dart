@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Home_feed/bookmarks/product_manage.dart';
+import 'package:SNEWS/Home_feed/bookmarks/product_manage.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../provider/user_provider.dart';
@@ -40,7 +40,7 @@ class _BookmarksPageState extends State<BookmarksPage>
                     height: 50,
                     width: 50,
                     child: Lottie.network(
-                        'Url')),
+                        'https://lottie.host/ec60617b-dcfc-4048-9502-e46248d7e483/owoyOKILmO.json')),
                 SizedBox(
                   width: 10,
                 ),

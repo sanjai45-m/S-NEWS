@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/auth/login_page.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/auth/login_page.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
@@ -41,8 +41,7 @@ class _SetPinPageState extends State<SetPinPage> {
         'pin': pin,
       };
 
-      final String url =
-          'Url';
+      final String url = 'baseurl/users/${widget.phoneNumber}.json';
 
       try {
         final http.Response response = await http.put(
@@ -55,10 +54,9 @@ class _SetPinPageState extends State<SetPinPage> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const LoginPage()),
-                (route) => route.settings.name == '/initialPage', // Adjust as needed
+            (route) =>
+                route.settings.name == '/initialPage', // Adjust as needed
           );
-
-
         } else {
           setState(() {
             _errorMessage = 'Failed to set PIN: ${response.body}';
@@ -106,7 +104,6 @@ class _SetPinPageState extends State<SetPinPage> {
                         Text(
                           'Set a 4-digit PIN',
                           style: TextStyle(
-
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: themeProvider.darkTheme
@@ -115,7 +112,7 @@ class _SetPinPageState extends State<SetPinPage> {
                         ),
                         const SizedBox(height: 20),
                         Padding(
-                          padding:  EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: TextFormField(
                             style: TextStyle(
                                 color: themeProvider.darkTheme
@@ -212,12 +209,11 @@ class _SetPinPageState extends State<SetPinPage> {
                             },
                           ),
                         ),
-                         SizedBox(height: 20),
+                        SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: _setPin,
                           child: const Text('Set PIN'),
                         ),
-
                       ],
                     ),
                   ),

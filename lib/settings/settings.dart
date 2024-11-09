@@ -3,10 +3,10 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Home_feed/stylish_appbar.dart';
-import 'package:flutter_application_1/auth/login_page.dart';
-import 'package:flutter_application_1/constant_classes/utils.dart';
-import 'package:flutter_application_1/settings/profile_page.dart';
+import 'package:SNEWS/Home_feed/stylish_appbar.dart';
+import 'package:SNEWS/auth/login_page.dart';
+import 'package:SNEWS/constant_classes/utils.dart';
+import 'package:SNEWS/settings/profile_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
@@ -155,7 +155,7 @@ class _SettingsState extends State<Settings>
                       height: 50,
                       width: 50,
                       child: Lottie.network(
-                          'Url')),
+                          'https://lottie.host/74195745-dba0-4cfb-bbe7-1876d2f01292/3WSz21wG86.json')),
                   SizedBox(
                     width: 10,
                   ),
@@ -467,10 +467,10 @@ class _SettingsState extends State<Settings>
                                   },
                                 ),
                                 TextButton(
-
                                   child: const Text("Logout"),
                                   onPressed: () async {
-                                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
                                     // Clear all other preferences except 'isFirstLaunch'
                                     await prefs.remove('isPhoneNumber');
                                     await prefs.remove('someOtherKey');
@@ -480,12 +480,13 @@ class _SettingsState extends State<Settings>
                                         gravity: toast.Toast.bottom);
 
                                     Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(builder: (context) => const LoginPage()),
-                                          (Route<dynamic> route) => false,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginPage()),
+                                      (Route<dynamic> route) => false,
                                     );
                                   },
                                 ),
-
                               ],
                             );
                           },
@@ -495,7 +496,7 @@ class _SettingsState extends State<Settings>
                         "Logout",
                         style: TextStyle(color: color, fontSize: 20),
                       ),
-                      icon:  Icon(
+                      icon: Icon(
                         Icons.logout_sharp,
                         color: appThemeColor,
                       ),

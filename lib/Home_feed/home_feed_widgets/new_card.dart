@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Home_feed/new_details/news_details.dart';
+import 'package:SNEWS/Home_feed/new_details/news_details.dart';
 import '../const_home_feed/skeleton_details_page.dart';
 import '../new_details/news.dart';
 
@@ -62,7 +62,7 @@ class _NewsCardState extends State<NewsCard> {
                   borderRadius: BorderRadius.circular(16),
                   child: Image.network(
                     widget.article.urlToImage ??
-                        "Url",
+                        "https://img.freepik.com/free-photo/image-icon-front-side-white-background_187299-40166.jpg",
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,

@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedDarkTheme {
-  static const setValue = "Fixed";
+  static const setValue = "FIxed";
 
   setDarkTheme(bool value) async {
     final prefs = await SharedPreferences.getInstance();

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import '../Home_feed/bookmarks/product_manage.dart';
 import '../provider/user_provider.dart';
-import '../webview_tab/news_details_webview.dart';
+import '../tabs/news_details_webview.dart';
 import 'all_languages_skeleton.dart';
 
 class TamilNewsDetailsPage extends StatefulWidget {

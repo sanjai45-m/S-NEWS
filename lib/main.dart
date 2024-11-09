@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/custom_widget/on_boarding_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Home_feed/bookmarks/bookmarks.dart';
@@ -10,6 +9,7 @@ import 'Home_feed/bookmarks/product_manage.dart';
 import 'auth/login_page.dart';
 import 'constant_classes/theme_data.dart';
 import 'custom_widget/main_page.dart';
+import 'custom_widget/on_boarding_overlay.dart';
 import 'provider/dark_theme_provider.dart';
 import 'provider/settings_provider.dart';
 import 'provider/user_provider.dart';
@@ -26,7 +26,7 @@ Future<void> saveFcmToken(String token) async {
   String? phoneNumber = prefs.getString('isPhoneNumber');
 
   if (phoneNumber != null) {
-    final url = 'Url';
+    final url = 'baseurl/users/$phoneNumber.json';
     final response = await http.patch(
       Uri.parse(url),
       body: json.encode({
@@ -52,10 +52,11 @@ void main() async {
 
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      messagingSenderId: 'messagingSenderId ',
-      projectId: 'projectId',
-        apiKey: 'apiKey',
-      appId: 'appId'
+      apiKey: 'AIzaSyAEtOExKy6kpd2xUg72x6Zrl_4cpm4AV_0',
+      appId: '1:419020799007:android:662b35213405fc7191292a',
+      messagingSenderId: '419020799007',
+      projectId: 'snews-8ed67',
+      storageBucket: "gs://snews-8ed67.appspot.com",
     ),
   );
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class Utils {
@@ -9,11 +9,10 @@ class Utils {
   bool get getTheme => Provider.of<DarkThemeProvider>(context).darkTheme;
   Color get getColor => getTheme ? Colors.white : Colors.black;
 
-
-  Color get baseShimmerColor => getTheme ? Colors.grey.shade500 :Colors.grey.shade200;
-  Color get highlightShimmerColor => getTheme ? Colors.grey.shade700 :Colors.grey.shade400;
-  Color get widgetShimmerColor => getTheme ? Colors.grey.shade600 :Colors.grey.shade100;
-
-
+  Color get baseShimmerColor =>
+      getTheme ? Colors.grey.shade500 : Colors.grey.shade200;
+  Color get highlightShimmerColor =>
+      getTheme ? Colors.grey.shade700 : Colors.grey.shade400;
+  Color get widgetShimmerColor =>
+      getTheme ? Colors.grey.shade600 : Colors.grey.shade100;
 }
-

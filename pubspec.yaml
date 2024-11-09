@@ -1,4 +1,4 @@
-name: flutter_application_1
+name: SNEWS
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -75,6 +75,6 @@ flutter:
   assets:
     - assets/images/
     - assets/images/riv/
-    - assets/keys/authen-48d46-firebase-adminsdk-afo8n-a49b4f2cae.json
+    - assets/keys/snews-8ed67-firebase-adminsdk-fb9er-c8eda72344.json
     - assets/splash_screen/
     - assets/lottie/

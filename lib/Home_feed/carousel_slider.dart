@@ -2,11 +2,10 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/Home_feed/api.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import '../APIs/api.dart';
-import '../APIs/carousel_slider_api.dart';
 import '../top_trending/top_trending_news.dart';
 import '../provider/dark_theme_provider.dart';
 
@@ -42,7 +41,7 @@ class _CarouselsSliderState extends State<CarouselsSlider> {
     return Container(
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        color:isDarkMode?  Colors.black.withOpacity(0.4) : Colors.white,
+        color: isDarkMode ? Colors.black.withOpacity(0.4) : Colors.white,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
@@ -91,14 +90,16 @@ class _CarouselsSliderState extends State<CarouselsSlider> {
                         errorBuilder: (context, error, stackTrace) => Container(
                           color: Colors.grey,
                           alignment: Alignment.center,
-                          child: const Icon(Icons.broken_image, color: Colors.white, size: 50),
+                          child: const Icon(Icons.broken_image,
+                              color: Colors.white, size: 50),
                         ),
                       ),
                       Positioned(
                         top: 10,
                         right: 10,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0, vertical: 4.0),
                           decoration: BoxDecoration(
                             color: Colors.black54,
                             borderRadius: BorderRadius.circular(10),
@@ -121,7 +122,10 @@ class _CarouselsSliderState extends State<CarouselsSlider> {
                           padding: const EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Colors.black.withOpacity(0.8), Colors.transparent],
+                              colors: [
+                                Colors.black.withOpacity(0.8),
+                                Colors.transparent
+                              ],
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter,
                             ),
@@ -157,3 +161,25 @@ class _CarouselsSliderState extends State<CarouselsSlider> {
   }
 }
 
+class CarouselSliderApi {
+  Future<List<Articles1>?> getFromJsonApiImages() async {
+    final apikey = Api().apikey;
+    final url =
+        Uri.parse('https://newsapi.org/v2/everything?q=science&apiKey=$apikey');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        final List<dynamic> data = jsonData['articles'];
+        return data.map((e) => Articles1.fromJson(e)).toList();
+      } else {
+        throw Exception("Failed to Load Data");
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Failed to Load $e");
+      }
+      return null;
+    }
+  }
+}

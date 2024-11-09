@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+import 'package:SNEWS/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../provider/user_provider.dart';
 
@@ -108,7 +108,7 @@ class UsersListPage extends StatelessWidget {
               }
 
               return Container(
-                margin: EdgeInsets.only(left: 10,right: 10),
+                margin: EdgeInsets.only(left: 10, right: 10),
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: ListTile(
                   leading: CircleAvatar(

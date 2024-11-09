@@ -54,7 +54,7 @@ class GetStartedPage extends StatelessWidget {
                   const SizedBox(height: 50),
                   // Lottie Animation
                   Image.network(
-                    'url',
+                    'https://img.freepik.com/free-psd/3d-illustration-female-graphic-designer-character-working-laptop_23-2149501803.jpg',
                     width: 800,
                     height: 400,
                     fit: BoxFit.fill,

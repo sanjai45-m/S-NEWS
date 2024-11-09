@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:SNEWS/auth/sign_up_page.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/auth/sign_up_page.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../custom_widget/main_page.dart';
+import '../provider/dark_theme_provider.dart';
 import '../provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,13 +25,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _pinController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _errorMessage = '';
-
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
       String phone = _phoneController.text.trim();
       String pin = _pinController.text.trim();
 
-      final String url = 'Database URl';
+      final String url = 'baseurl/users/$phone.json';
 
       try {
         final http.Response response = await http.get(Uri.parse(url));
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
     String? phoneNumber = prefs.getString('isPhoneNumber');
 
     if (phoneNumber != null) {
-      final url = 'Url';
+      final url = 'baseurl/users/$phoneNumber.json';
       final response = await http.patch(
         Uri.parse(url),
         body: json.encode({

@@ -1,10 +1,10 @@
 import 'package:action_slider/action_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/provider/dark_theme_provider.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import '../provider/dark_theme_provider.dart';
 import 'otpPage.dart';
 import 'package:http/http.dart' as http;
 import 'package:toast/toast.dart' as toast;
@@ -24,8 +24,7 @@ class _SignupPageState extends State<SignupPage> {
   Future<bool> _checkValidNumberOrNot() async {
     FocusScope.of(context).unfocus();
     final String phoneNumber = phoneController.text.trim();
-    final String url =
-        'Url';
+    final String url = 'baseurl/$phoneNumber.json';
 
     try {
       final http.Response response = await http.get(Uri.parse(url));
@@ -95,7 +94,7 @@ class _SignupPageState extends State<SignupPage> {
                             child: Center(
                               child: Container(
                                 constraints:
-                                const BoxConstraints(maxWidth: 400),
+                                    const BoxConstraints(maxWidth: 400),
                                 height: 350,
                                 decoration: BoxDecoration(
                                   color: Colors.white60,
@@ -114,7 +113,7 @@ class _SignupPageState extends State<SignupPage> {
                                   children: [
                                     Padding(
                                       padding:
-                                      const EdgeInsets.only(bottom: 18.0),
+                                          const EdgeInsets.only(bottom: 18.0),
                                       child: Text(
                                         'Sign Up',
                                         style: TextStyle(
@@ -164,7 +163,7 @@ class _SignupPageState extends State<SignupPage> {
                                       toggleColor: _toggleColor,
                                       action: (controller) async {
                                         String localPhoneNumber =
-                                        phoneController.text.trim();
+                                            phoneController.text.trim();
 
                                         if (localPhoneNumber.isEmpty) {
                                           controller
@@ -216,18 +215,18 @@ class _SignupPageState extends State<SignupPage> {
                                         await Future.delayed(const Duration(
                                             seconds: 1)); // Simulating delay
                                         final response =
-                                        await _checkValidNumberOrNot();
+                                            await _checkValidNumberOrNot();
 
                                         if (response) {
                                           controller.success();
                                           await Future.delayed(const Duration(
-                                              seconds: 1)); // Show success icon before navigation
+                                              seconds:
+                                                  1)); // Show success icon before navigation
                                           Navigator.push(
                                             context,
                                             PageTransition(
                                               type: PageTransitionType.size,
-                                              alignment:
-                                              Alignment.bottomCenter,
+                                              alignment: Alignment.bottomCenter,
                                               child: OtpPage(
                                                 phoneNumber: localPhoneNumber,
                                               ),
@@ -266,7 +265,7 @@ class _SignupPageState extends State<SignupPage> {
                                     if (_errorMessage.isNotEmpty)
                                       Padding(
                                         padding:
-                                        const EdgeInsets.only(top: 8.0),
+                                            const EdgeInsets.only(top: 8.0),
                                         child: Text(
                                           _errorMessage,
                                           style: const TextStyle(

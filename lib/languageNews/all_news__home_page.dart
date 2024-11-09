@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/languageNews/langages_news_details_page.dart';
-import 'package:flutter_application_1/languageNews/All_language.dart';
-import 'package:flutter_application_1/languageNews/all_languages_skeleton.dart';
+import 'package:SNEWS/languageNews/langages_news_details_page.dart';
+import 'package:SNEWS/languageNews/All_language.dart';
+import 'package:SNEWS/languageNews/all_languages_skeleton.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../APIs/api_all_languages.dart';
 import '../Home_feed/stylish_appbar.dart';
 import '../constant_classes/utils.dart';
 import '../provider/dark_theme_provider.dart';
+import 'api_all_languages.dart';
 import 'language_dropdown.dart';
 
 class TamilNewsHomePage extends StatefulWidget {
@@ -92,7 +92,11 @@ class _TamilNewsHomePageState extends State<TamilNewsHomePage>
           padding: const EdgeInsets.all(70.0),
           child: Row(
             children: [
-              SizedBox(height: 60, width: 60, child: Lottie.network('Url')),
+              SizedBox(
+                  height: 60,
+                  width: 60,
+                  child: Lottie.network(
+                      'https://lottie.host/abfc3d4c-bef6-439f-a9f7-4f7d49a46670/eoOk0H0E0F.json')),
               SizedBox(
                 width: 10,
               ),
@@ -170,13 +174,13 @@ class _TamilNewsHomePageState extends State<TamilNewsHomePage>
                                   child: Image.network(
                                     tamil.image?.isNotEmpty == true
                                         ? tamil.image!
-                                        : "Url",
+                                        : "https://img.freepik.com/free-photo/image-icon-front-side-white-background_187299-40166.jpg",
                                     width: 100,
                                     height: 100,
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Image.network(
-                                        "Url",
+                                        "https://img.freepik.com/free-photo/image-icon-front-side-white-background_187299-40166.jpg",
                                         width: 100,
                                         height: 100,
                                         fit: BoxFit.cover,

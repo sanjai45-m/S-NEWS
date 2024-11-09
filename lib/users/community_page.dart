@@ -1,13 +1,13 @@
 import 'package:animated_floating_buttons/widgets/animated_floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_application_1/users/community_skeleton_card.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import '../provider/dark_theme_provider.dart';
 import 'chat_room_page.dart';
 import '../provider/user_provider.dart';
+import 'community_skeleton_card.dart';
 import 'personal_chat_page.dart'; // Import the PersonalChatPage
 
 class CommunityPage extends StatefulWidget {
@@ -219,7 +219,7 @@ class _CommunityPageState extends State<CommunityPage> {
                 children: [
                   const Text("No accepted chats."),
                   Lottie.network(
-                      'Url')
+                      'https://lottie.host/ae28351b-a72e-4810-a4f9-c5469f67d3cb/62iddnjGxI.json')
                 ],
               ),
               actions: [
@@ -356,7 +356,7 @@ class _CommunityPageState extends State<CommunityPage> {
                   height: 50,
                   width: 50,
                   child: Lottie.network(
-                      'Url')),
+                      'https://lottie.host/9e90bb8d-f3e8-42c5-93ff-5731ac720534/JfDKgI6jKL.json')),
               Text(
                 "Community",
                 style: TextStyle(
@@ -369,7 +369,7 @@ class _CommunityPageState extends State<CommunityPage> {
         centerTitle: true,
         leading: IconButton(
           icon: Lottie.network(
-              'uRL',
+              'https://lottie.host/13544c62-5593-4a6f-a6a1-81ffb77da3eb/93EoPjai9l.json',
               height: 30,
               width: 30),
           onPressed: _fetchChatRequests,
@@ -377,7 +377,7 @@ class _CommunityPageState extends State<CommunityPage> {
         actions: [
           IconButton(
             icon: Lottie.network(
-              'uRL',
+              'https://lottie.host/f76c26bf-f594-4a4d-9dc7-645eaabf2814/wJS7Y4aEkx.json',
             ),
             onPressed: _handleAcceptedChats, // Show accepted chats
           ),

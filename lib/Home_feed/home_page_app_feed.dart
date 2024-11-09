@@ -2,13 +2,12 @@ import 'dart:async';
 import 'package:floating_draggable_widget/floating_draggable_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Home_feed/stylish_appbar.dart';
+import 'package:SNEWS/Home_feed/stylish_appbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
-import '../APIs/api.dart';
 import '../searchpage/home_search_page.dart';
 import '../top_trending/top_trending.dart';
 import 'carousel_slider.dart';
@@ -16,6 +15,7 @@ import 'home_feed_widgets/new_card.dart';
 import 'home_feed_widgets/skeleton_card.dart';
 import 'home_feed_widgets/tab_item.dart';
 import '../provider/dark_theme_provider.dart';
+import 'api.dart';
 import 'const_home_feed/consts.dart';
 import 'new_details/news.dart';
 import 'dart:ui';
@@ -273,7 +273,7 @@ class _HomePageState extends State<HomePage>
                     height: 50,
                     width: 50,
                     child: Lottie.network(
-                        'URL')),
+                        'https://lottie.host/2e90e9cc-c971-42e6-b867-21a82e78a194/TTDr4fNpP6.json')),
                 SizedBox(
                   width: 10,
                 ),
